@@ -1,0 +1,3 @@
+class DocumentFilingCategory < ApplicationRecord
+
+end

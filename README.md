@@ -1,24 +1,32 @@
-# README
+# atlas-api
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+An api layer for ATLAS. This will sit on the server with ATLAS and interface with the production database. It's a little :shit:, but it'll work until we can build ATLAS 4 with built in API endpoints.
 
-Things you may want to cover:
+## Requirements
 
-* Ruby version
+* Ruby 2.2.0+
+* Rails 5
+* MySQL
+* An exisiting ATLAS installation
 
-* System dependencies
+## Setup
 
-* Configuration
+* Clone the repository
+* Copy `config/database.default.yml` to `config/database.yml'
+* Configure `config/database.yml` to point to your ATLAS database
 
-* Database creation
+## Running Specs
 
-* Database initialization
+After cloning the repository ensure all specs are passing.
 
-* How to run the test suite
+`cd <project_directory> && rake`
 
-* Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
+## Contributing
 
-* ...
+* Before writing any new code, make sure all specs are green.
+* Create a feature branch
+* Open a pull request (yes, this early.)
+* Test drive your feature! Red, green, refactor!
+
+When it's ready to be merged, ping 2-3 reviewers. If the feature is ready it will be merged into a release branch and deployed.

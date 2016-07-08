@@ -1,6 +1,6 @@
 # atlas-api
 
-An api layer for ATLAS. This will sit on the server with ATLAS and interface with the production database. It's a little :shit:, but it'll work until we can build ATLAS 4 with built in API endpoints.
+An api layer for ATLAS. This will sit on the server with ATLAS and interface with the production database. It's not perfect, but it'll work until we can build ATLAS 4 with built in API endpoints.
 
 ## Requirements
 
@@ -12,7 +12,7 @@ An api layer for ATLAS. This will sit on the server with ATLAS and interface wit
 ## Setup
 
 * Clone the repository
-* Copy `config/database.default.yml` to `config/database.yml'
+* Copy `config/database.default.yml` to `config/database.yml`
 * Configure `config/database.yml` to point to your ATLAS database
 
 ## Running Specs

@@ -1,0 +1,2 @@
+class DocumentFilingCategoriesController < ApplicationController
+end

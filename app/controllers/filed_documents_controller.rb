@@ -1,2 +1,2 @@
-class FiledDocumentsController < JSONAPI::ResourceController
+class FiledDocumentsController < ApplicationController
 end

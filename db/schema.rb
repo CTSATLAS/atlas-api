@@ -647,19 +647,18 @@ ActiveRecord::Schema.define(version: 20160728163326) do
   end
 
   create_table "locations", force: :cascade, options: "ENGINE=MyISAM DEFAULT CHARSET=utf8" do |t|
-    t.integer "geosol_office_id"
-    t.string  "name",             limit: 100, null: false
-    t.string  "public_name",      limit: 100, null: false
-    t.string  "address_1",        limit: 200, null: false
-    t.string  "address_2",        limit: 200, null: false
-    t.string  "city",             limit: 50,  null: false
-    t.string  "state",            limit: 2,   null: false
-    t.string  "zip",              limit: 5,   null: false
-    t.string  "country",          limit: 50,  null: false
-    t.string  "telephone",        limit: 14,  null: false
-    t.string  "fax",              limit: 14,  null: false
-    t.boolean "hidden",                       null: false
-    t.string  "hours",                        null: false
+    t.string  "name",        limit: 100, null: false
+    t.string  "public_name", limit: 100, null: false
+    t.string  "address_1",   limit: 200, null: false
+    t.string  "address_2",   limit: 200, null: false
+    t.string  "city",        limit: 50,  null: false
+    t.string  "state",       limit: 2,   null: false
+    t.string  "zip",         limit: 5,   null: false
+    t.string  "country",     limit: 50,  null: false
+    t.string  "telephone",   limit: 14,  null: false
+    t.string  "fax",         limit: 14,  null: false
+    t.boolean "hidden",                  null: false
+    t.string  "hours",                   null: false
   end
 
   create_table "master_kiosk_buttons", force: :cascade, options: "ENGINE=MyISAM DEFAULT CHARSET=utf8" do |t|
@@ -1126,11 +1125,10 @@ ActiveRecord::Schema.define(version: 20160728163326) do
   end
 
   create_table "roles", force: :cascade, options: "ENGINE=MyISAM DEFAULT CHARSET=utf8" do |t|
-    t.string   "name",                 limit: 100,                null: false
-    t.string   "redirect_after_login"
-    t.datetime "created",                                         null: false
-    t.datetime "modified",                                        null: false
-    t.boolean  "can_view_full_ssn",                default: true, null: false
+    t.string   "name",              limit: 100,                null: false
+    t.datetime "created",                                      null: false
+    t.datetime "modified",                                     null: false
+    t.boolean  "can_view_full_ssn",             default: true, null: false
   end
 
   create_table "room_requests", force: :cascade, options: "ENGINE=MyISAM DEFAULT CHARSET=utf8" do |t|
@@ -1226,25 +1224,21 @@ ActiveRecord::Schema.define(version: 20160728163326) do
 
   create_table "user_transactions", force: :cascade, options: "ENGINE=MyISAM DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
-    t.string   "location",    limit: 100
-    t.string   "module",      limit: 100
+    t.string   "location", limit: 100
+    t.string   "module",   limit: 100
     t.string   "details"
-    t.text     "notes",       limit: 65535
-    t.date     "due_date"
-    t.string   "assigned_to", limit: 100
-    t.string   "status"
     t.datetime "created"
     t.index ["user_id"], name: "user_id", using: :btree
   end
 
   create_table "users", force: :cascade, options: "ENGINE=MyISAM DEFAULT CHARSET=utf8" do |t|
-    t.integer  "role_id"
     t.string   "firstname",               limit: 50
     t.string   "lastname",                limit: 50
     t.string   "middle_initial",          limit: 3
     t.string   "surname",                 limit: 10
     t.string   "ssn",                     limit: 9
     t.string   "username",                limit: 25
+    t.integer  "role_id"
     t.string   "windows_username",        limit: 100
     t.string   "password",                limit: 40
     t.string   "address_1",               limit: 100

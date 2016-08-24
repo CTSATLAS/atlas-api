@@ -2,15 +2,12 @@ require 'fileutils'
 
 class QueuedDocumentsController < ApiController
   def create
-    document = generate_pdf_from_base64(encoded_file_string)
-    file_and_queue_document(document)
+    document_filename = generate_pdf_from_base64(encoded_file_string)
+    QueuedDocument.create!(filename: document_filename, entry_method: 'API Upload')
+    render json: { success: true }, status: :ok
   end
 
   private
-
-  def queued_document_params
-    params.require(:data).permit(:type, attributes: :file)
-  end
 
   def encoded_file_string
     params['data']['attributes']['file']
@@ -18,10 +15,13 @@ class QueuedDocumentsController < ApiController
 
   def generate_pdf_from_base64(base64_string)
     decoded_string = Base64.decode64(base64_string)
+    filename = generate_filename
 
-    File.open("#{storage_folder}/#{generate_filename}", 'wb') do |f|
+    File.open("#{storage_folder}/#{filename}", 'wb') do |f|
       f.write(decoded_string)
     end
+
+    filename
   end
 
   def storage_folder
@@ -43,8 +43,5 @@ class QueuedDocumentsController < ApiController
   def generate_filename
     rand = Random.new
     "#{Date.today.strftime('%Y%m%d%H%I%S')}#{rand.rand(10**7)}.pdf"
-  end
-
-  def file_and_queue_document(document)
   end
 end

@@ -1,0 +1,2 @@
+class QueuedDocument < ApplicationRecord
+end

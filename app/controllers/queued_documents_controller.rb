@@ -28,7 +28,7 @@ class QueuedDocumentsController < ApiController
     if Rails.env.development?
       storage_path = '/Users/brandoncordell/Code/atlas/storage/'
     else
-      storage_path = '/var/www/deploy/atlas/shared/storage/'
+      storage_path = '/var/www/vhosts/deploy/atlas/shared/storage/'
     end
 
     storage_path << "#{Date.today.year.to_s}/#{Date.today.strftime('%m').to_s}"

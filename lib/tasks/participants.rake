@@ -1,9 +1,12 @@
 require 'csv'
 require 'net/sftp'
 
+logger = Logger.new('log/participants.log')
+
 namespace :participants do
   desc "Download CSV of participants from Denver's server. Runs daily. See config/schedule.rb"
   task download: :environment do
+    logger.info 'Downloading participants from rescareadmin.advantagesoftware.net'
 
     Net::SFTP.start('rescareadmin.advantagesoftware.net', 'atlasuser', password: 'roSldQMxydM2m') do |sftp|
       sftp.download!("/data/#{filename}", "#{Rails.public_path}/#{filename}")
@@ -12,21 +15,25 @@ namespace :participants do
 
   desc 'Import batch of participants. Runs daily after participants:download. See config/schedule.rb'
   task import: :environment do
+    logger.info 'Importing participants'
     inserts = []
 
     CSV.foreach("#{Rails.public_path}/#{filename}", headers: true) do |row|
+      case_number = CaseNumber.where(number: row[4]).first_or_create!(number: row[4])
+
       row[1].gsub!(/'/, '')
       row[2].gsub!(/'/, '')
-      inserts.push "('#{row[1]}', '#{row[2]}', 1, '#{parse_dob(row[3])}', '#{row[5]}', '#{datetime_now}', '#{datetime_now}')"
+      inserts.push "(#{case_number.id}, '#{row[1]}', '#{row[2]}', 1, '#{parse_dob(row[3])}', '#{row[5]}', '#{datetime_now}', '#{datetime_now}')"
     end
 
-    sql = "INSERT INTO users (`firstname`, `lastname`, `role_id`, `dob`, `address_1`, `created`, `modified`) VALUES #{inserts.join(', ')}"
+    sql = "INSERT INTO users (`case_number_id`, `firstname`, `lastname`, `role_id`, `dob`, `address_1`, `created`, `modified`) VALUES #{inserts.join(', ')}"
     results = ActiveRecord::Base.connection.execute(sql)
   end
 end
 
 def filename
   "participants_#{todays_date}.csv"
+  "participants_20160824.csv"
 end
 
 def parse_dob(dob)

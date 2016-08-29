@@ -3,11 +3,16 @@ require 'fileutils'
 class QueuedDocumentsController < ApiController
   def create
     document_filename = generate_pdf_from_base64(encoded_file_string)
-    QueuedDocument.create!(filename: document_filename, entry_method: 'API Upload')
+    case_number = CaseNumber.where(number: incoming_case_number).first_or_create! number: incoming_case_number
+    QueuedDocument.create!(case_number_id: case_number.id, filename: document_filename, entry_method: 'API Upload')
     render json: { success: true }, status: :ok
   end
 
   private
+
+  def incoming_case_number
+    params['data']['attributes']['case_number']
+  end
 
   def encoded_file_string
     params['data']['attributes']['file']

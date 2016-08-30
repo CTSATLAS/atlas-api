@@ -9,7 +9,7 @@ class FiledDocumentResource < JSONAPI::Resource
   end
 
   def download_url
-    "https://denver.atlasforworkforce.com/admin/filed_documents/view/#{@model.id}"
+    "https://api.atlasforworkforce.com/filed_documents/#{@model.id}/download"
   end
 
   def admin

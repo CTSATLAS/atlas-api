@@ -4,7 +4,7 @@ class QueuedDocumentsController < ApiController
   def create
     document_filename = generate_pdf_from_base64(encoded_file_string)
     case_number = CaseNumber.where(number: incoming_case_number).first_or_create! number: incoming_case_number
-    QueuedDocument.create!(case_number_id: case_number.id, filename: document_filename, entry_method: 'API Upload')
+    QueuedDocument.create!(queued_category_id: 33, case_number_id: case_number.id, filename: document_filename, entry_method: 'API Upload')
     render json: { success: true }, status: :ok
   end
 

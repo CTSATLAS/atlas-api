@@ -5,4 +5,6 @@ class UserResource < JSONAPI::Resource
     :veteran, :disability, :organization, :signature, :signature_data, :location_id,
     :id_card_number, :signature_created, :signature_modified, :created, :modified, :guardian,
     :guardian_signature, :guardian_signature_data, :last_kiosk_login
+
+  filter :email
 end

@@ -7,4 +7,5 @@ Rails.application.routes.draw do
   jsonapi_resources :filed_documents
   jsonapi_resources :locations
   jsonapi_resources :service_types
+  jsonapi_resources :users
 end

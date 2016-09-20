@@ -4,7 +4,9 @@ class AppointmentsController < ApiController
       location_id: incoming_location_id,
       office: incoming_office_request,
       service_type_id: incoming_service_type_id,
-      user_id: incoming_user_id
+      user_id: incoming_user_id,
+      created: Time.now.to_s(:db),
+      modified: Time.now.to_s(:db)
     }
 
     JobSeekerQueue.create! job_seeker_log

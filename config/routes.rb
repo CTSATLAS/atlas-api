@@ -9,4 +9,5 @@ Rails.application.routes.draw do
   jsonapi_resources :locations
   jsonapi_resources :service_types
   jsonapi_resources :users
+  jsonapi_resources :user_transactions
 end

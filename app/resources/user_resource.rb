@@ -7,4 +7,6 @@ class UserResource < JSONAPI::Resource
     :guardian_signature, :guardian_signature_data, :last_kiosk_login
 
   filter :email
+  filter :firstname
+  filter :lastname
 end

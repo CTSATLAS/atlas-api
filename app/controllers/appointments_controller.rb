@@ -2,7 +2,7 @@ class AppointmentsController < ApiController
   def create
     job_seeker_log = {
       location_id: incoming_location_id,
-      office: incoming_office_request,
+      in_office: incoming_office_request,
       service_type_id: incoming_service_type_id,
       notes: incoming_notes,
       user_id: incoming_user_id,
@@ -25,7 +25,7 @@ class AppointmentsController < ApiController
   end
 
   def incoming_office_request
-    params['data']['attributes']['office']
+    params['data']['attributes']['in_office']
   end
 
   def incoming_service_type_id

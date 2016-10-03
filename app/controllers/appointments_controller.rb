@@ -4,6 +4,7 @@ class AppointmentsController < ApiController
       location_id: incoming_location_id,
       office: incoming_office_request,
       service_type_id: incoming_service_type_id,
+      notes: incoming_notes,
       user_id: incoming_user_id,
       created: Time.now.to_s(:db),
       modified: Time.now.to_s(:db)
@@ -14,6 +15,10 @@ class AppointmentsController < ApiController
   end
 
   private
+
+  def incoming_notes
+    params['data']['attributes']['notes']
+  end
 
   def incoming_location_id
     params['data']['attributes']['location_id']

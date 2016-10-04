@@ -6,7 +6,13 @@ class UserResource < JSONAPI::Resource
     :id_card_number, :signature_created, :signature_modified, :created, :modified, :guardian,
     :guardian_signature, :guardian_signature_data, :last_kiosk_login
 
+  before_create :assign_role
+
   filter :email
   filter :firstname
   filter :lastname
+
+  def assign_role
+    @model.role_id = 1
+  end
 end

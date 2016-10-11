@@ -25,7 +25,7 @@ class AppointmentsController < ApiController
   end
 
   def incoming_office_request
-    params['data']['attributes']['in_office']
+    params['data']['attributes']['in_office'] || 0
   end
 
   def incoming_service_type_id

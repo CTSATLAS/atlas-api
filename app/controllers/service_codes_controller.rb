@@ -1,0 +1,2 @@
+class ServiceCodesController < ApplicationController
+end

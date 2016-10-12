@@ -4,7 +4,7 @@ class UserResource < JSONAPI::Resource
     :zip, :phone, :alt_phone, :gender, :dob, :email, :language, :ethnicity, :race,
     :veteran, :disability, :organization, :signature, :signature_data, :location_id,
     :id_card_number, :signature_created, :signature_modified, :created, :modified, :guardian,
-    :guardian_signature, :guardian_signature_data, :last_kiosk_login
+    :guardian_signature, :guardian_signature_data, :last_kiosk_login, :bluedrop_user_id
 
   before_create :assign_role
 

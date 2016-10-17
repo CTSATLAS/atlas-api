@@ -10,8 +10,26 @@ class AppointmentsController < ApiController
       modified: Time.now.to_s(:db)
     }
 
-    JobSeekerQueue.create! job_seeker_log
-    render json: { success: true }, status: :ok
+    job_seeker_queue = JobSeekerQueue.new job_seeker_log
+
+    if job_seeker_queue.save
+      render json: { success: true }, status: :ok
+    else
+      errors = []
+
+      job_seeker_queue.errors.messages.each do |field, error|
+        detail = {
+          title: error.first,
+          detail: "#{field} - #{error.first}",
+          code: 100,
+          status: 422
+        }
+        errors << detail
+      end
+
+      render json: { errors: errors }, status: :unprocessable_entity
+      return
+    end
   end
 
   private

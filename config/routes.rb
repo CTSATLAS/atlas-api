@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   resources :queued_documents, defaults: { format: :json }
   resources :appointments, defaults: { format: :json }
+  resources :imports, defaults: { format: :json }
 
   jsonapi_resources :document_filing_categories
   jsonapi_resources :filed_documents

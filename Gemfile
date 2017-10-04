@@ -6,7 +6,7 @@ gem 'jbuilder'
 gem 'jsonapi-resources', '~> 0.7.1.beta2'
 gem 'mysql2', '>= 0.3.18', '< 0.5'
 gem 'net-sftp'
-gem 'puma', '~> 3.0'
+gem 'puma', '~> 3.10'
 gem 'rack-cors'
 gem 'whenever', require: false
 

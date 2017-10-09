@@ -1,5 +1,5 @@
 class UserResource < JSONAPI::Resource
-  attributes :id, :firstname, :lastname, :middle_initial, :surname, :ssn,
+  attributes :id, :firstname, :lastname, :middle_initial, :name_suffix, :ssn,
     :username, :role_id, :windows_username, :address_1, :city, :state, :county,
     :zip, :phone, :alt_phone, :gender, :dob, :email, :language, :ethnicity, :race,
     :veteran, :disability, :organization, :signature, :signature_data, :location_id,
